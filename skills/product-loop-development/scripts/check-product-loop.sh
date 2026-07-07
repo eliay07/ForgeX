@@ -154,6 +154,7 @@ check_text "字体层级 / 排版规则" "font-size|line-height|typography|page-
 check_text "布局网格 / 间距规则" "grid|gap|max-width|spacing|breakpoint|断点|间距|网格"
 check_text "图标语义 / 工具动作" "lucide|Icon|aria-label|tooltip|图标语义|icon"
 check_text "素材库 / 品牌资产计划" "素材库|brand assets|logo|wordmark|favicon|hero background|empty state|social preview|产品截图|Asset Inventory"
+check_text "产品身份 / 前端样本选型" "产品身份卡|前端样本|样本选型|参考样本|Logo 方向|主色方向|组件气质|不照抄|Mobbin|shadcn|Page Flows|AI UX Playground"
 check_hex_leak
 echo
 

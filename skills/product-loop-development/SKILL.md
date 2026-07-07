@@ -16,6 +16,7 @@ description: "Use when building, redesigning, reviewing, or planning a frontend/
 - 内部说明泄露：把 PRD、实现策略、设计原则、“我们要/不要怎么做”直接写到前端页面。
 - 素材风格割裂：logo、背景、插画、图标、空状态和社交预览没有统一视觉资产系统。
 - 品牌视觉降级：需要背景图、插画、封面、社交图或产品氛围图时，只用 HTML/SVG/CSS 临时画线条，没有调用 GPT 图像生成产出可复用 bitmap 资产。
+- 旧项目套壳：新产品没有自己的名字、logo、色卡、组件气质和样本选择，直接沿用上一个项目的视觉壳。
 - 产品类型误判：所有产品都套成同一种 dashboard、landing page 或卡片流，而不是根据用户任务选择合适的产品表面。
 - 默认 ToB 化：用户没有明确要求 ToB、后台、管理系统或企业内部工具时，仍把原型做成表格、指标卡、三栏后台和功能菜单。
 - 视觉引导缺失：首屏没有一个大的创作入口、示例预览或下一步引导，而是把来源、候选、详情、设置和数据一次性堆给用户。
@@ -37,6 +38,7 @@ description: "Use when building, redesigning, reviewing, or planning a frontend/
 8. 用户未明确要求 ToB、后台、管理系统、企业控制台、CRM、ERP、内部运营台时，默认按 ToC 或 prosumer 创作者产品处理：先给一个高吸引力创作入口，再逐步展开来源、设置、详情和高级能力；AI 产品、生成类工具、调研工具和产品启动工具必须优先采用“输入 -> 发送 -> 预填确认 -> 工作台”，不要把完整问卷默认铺在首屏。
 9. 涉及个人创作者、自媒体、短视频、图文、播客、课程、作品库、草稿库或内容生产工具时，必须优先审阅创作者三段动线：第一步目标管理与灵感库，第二步沉浸式编辑工作台，第三步发布确认与复盘追踪。
 10. 涉及前端页面、工作台、编辑器、IDE-like 产品、AI 助手、多面板工具、画布、草稿库、素材库、复杂创作流，或用户反馈“功能平铺/没有层次/交互不舒服/缺少收起和悬浮”时，必须先读取 `references/15-interaction-depth-and-disclosure.md`，明确交互深浅层级、默认打开/默认收起、右侧面板、抽屉、浮层、命令入口和可恢复折叠策略。
+11. 涉及从零做前端、新产品视觉、产品命名、logo、配色、组件风格、用户反馈“照抄/套壳/不像独立产品/需要样本库”时，必须读取 `references/16-frontend-reference-library-and-identity.md`，先填写 `templates/frontend-reference-selection-template.md`，为当前产品建立独立身份和前端样本选型表。
 
 ## 主流程
 
@@ -57,6 +59,8 @@ description: "Use when building, redesigning, reviewing, or planning a frontend/
 涉及产品类型判断、页面结构泛化、成熟产品质量标准或避免套用具体案例时，读取 `references/14-product-quality-standard.md`。
 
 涉及交互层级、渐进披露、可收起侧栏、右侧面板、抽屉、浮层、悬浮操作、命令菜单、工作台布局、沉浸编辑、预览位置或用户反馈“所有功能铺在一页”时，读取 `references/15-interaction-depth-and-disclosure.md`。
+
+涉及前端样本库、产品视觉差异化、产品命名、logo、色卡、组件气质、避免照抄旧项目或用户反馈“每个产品要有自己的设计思路”时，读取 `references/16-frontend-reference-library-and-identity.md`。
 
 ### 2. 信息架构和动线
 
@@ -162,6 +166,8 @@ bash scripts/check-product-loop.sh <project-path>
 - 首屏策略
 - 素材库计划
 - GPT 图像生成资产计划
+- 产品身份卡
+- 前端样本选型表
 - 前后端契约
 - 状态矩阵
 - 质量门槛
@@ -185,4 +191,5 @@ bash scripts/check-product-loop.sh <project-path>
 - Material Design / Apple HIG / IBM Carbon / Atlassian Design System：色彩角色、语义 token、状态色、对比度、亮暗模式和专业设计系统方法。
 - NN/g usability heuristics / visual hierarchy、Material Design FAB、Apple HIG navigation：识别优先于记忆、视觉层级、主动作聚焦、熟悉导航模式和渐进披露。
 - Radix UI、Floating UI、shadcn/ui、cmdk、react-resizable-panels、Vaul、React Spectrum、xyflow、tldraw、TanStack Router：可访问基础组件、悬浮层、命令菜单、可调整面板、抽屉、节点式流程、画布和深层路由等交互结构。
+- shadcn/ui Blocks、Radix Themes、Tailwind UI、Untitled UI、SaaS UI、Mantine UI、Tremor、Flowbite、Aceternity UI、Mobbin、Page Flows、UI Sources、SaaSFrame、Land-book、Lapa Ninja、Godly、Awwwards、AI UX Playground、Vercel AI Elements、assistant-ui、CopilotKit：前端样本、真实产品截图、AI UI 模式和组件参考库。
 - OpenAI Codex customization / skills 文档：用 skill 承载可复用工作流。
