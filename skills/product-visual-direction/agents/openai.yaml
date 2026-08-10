@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Visual Direction"
+  short_description: "锁定产品身份、视觉方向和关键状态组"
+  default_prompt: "为已确认动线建立三个视觉方向，选定 Visual DNA，并生成一致的关键页面状态组与设计系统。"

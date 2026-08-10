@@ -1,6 +1,6 @@
-# Codex Product Studio
+# ForgeX
 
-Codex Product Studio 是一套面向 Codex 的产品开发插件。它把“从 idea 到上线”的工作约束成一套可复用流程：先做产品经理判断，再做信息架构、交互、视觉系统、前后端契约、测试验证和发布闭环。
+ForgeX（造物引擎）是一套面向 Codex 的通用产品生产插件。它把“一句话想法”或“已有但不好用的 MVP”转成一条可执行流水线：方向与研究、Product Model、用户动线、信息架构、视觉方向、工程实现、真实浏览器测试、定向修复和完整交付。
 
 它的目标不是让 Codex 写更多代码，而是让 Codex 在写代码前先回答正确的问题，避免生成看起来像 demo、PRD 或随机 dashboard 的产品界面。
 
@@ -23,9 +23,20 @@ Codex Product Studio 是一套面向 Codex 的产品开发插件。它把“从 
 - UI 有入口但后端没有数据契约、权限、错误码、状态矩阵或验收方式。
 - 通用提示被具体项目名、真实业务对象、页面文案或品牌风格污染。
 
-## 核心能力
+## 插件结构
 
-- `product-loop-development`: 通用成熟产品标准、PM 优先级、产品表面选择、用户动线、交互层级、前端样本库、产品身份卡、按钮层级、2C 首屏、UI 文案隔离、设计 tokens、素材库、状态矩阵、前后端契约和 QA。
+- `forgex`: 唯一总入口，判断 Explore、Rebuild 或 Patch 路径并调度完整流程。
+- `product-discovery`: 方向澄清、可选头脑风暴、已有项目审计、候选竞品、正式研究和证据库。
+- `product-modeling`: 问题、Persona、产品原则、产品方向、功能树、优先级、假设和风险。
+- `product-flow-design`: Journey、Task Flow、User Flow、Service Blueprint、IA、页面、状态和 Wireflow。
+- `product-visual-direction`: 产品身份、三个视觉方向、GPT 关键页面状态组、Token、组件和素材计划。
+- `product-engineering`: 技术契约、Execution DAG、Codex 真实代码实现、运行记录和恢复。
+- `product-qa`: 典型用户测试用例、浏览器验证、截图证据、Issue、自动修复与回归。
+- `product-delivery`: 从已确认 Artifact 组装渐进 PRD、开发包、预览、测试报告和运行手册。
+- `product-loop-development`: 通用成熟产品标准、交互层级、前后端契约和跨阶段质量约束。
+
+插件仍包含以下辅助 Skill，可由总入口按需调用：
+
 - `create-plan`: 生成简洁执行计划。
 - `theme-factory`: 主题和视觉方向。
 - `webapp-testing`: 本地 Web 应用测试。
@@ -97,22 +108,22 @@ Codex Product Studio 是一套面向 Codex 的产品开发插件。它把“从 
 
 ## 本地安装
 
-本工作区通过 personal marketplace 注册：
+本工作区通过 `forgex-local` marketplace 注册：
 
 ```bash
-codex plugin add codex-product-dev-kit@personal
+codex plugin add forgex@forgex-local
 ```
 
 插件源目录：
 
 ```text
-/Users/eliayan/Desktop/codex/插件/codex-product-dev-kit
+/Users/eliayan/Desktop/codex/插件/forgex
 ```
 
 GitHub 仓库：
 
 ```text
-https://github.com/eliay07/Codex-Product-Studio
+https://github.com/eliay07/ForgeX
 ```
 
 ## 使用方式
@@ -120,7 +131,7 @@ https://github.com/eliay07/Codex-Product-Studio
 常用启动语：
 
 ```text
-请使用 Codex Product Studio。先按 PM 思维梳理产品定位、ToC/ToB 取向、功能优先级、产品表面、动线模型、可变页面层级、交互层级图、默认打开/默认收起规则、浮层/抽屉/命令入口策略、按钮摆放、2C 首屏、引导式流程、产品身份卡、前端样本选型表、设计 tokens、素材库、GPT 图像生成资产、状态矩阵和前后端契约，再开始写代码。除非明确要求 ToB，否则默认按 ToC / prosumer 创作者工具设计。内部 PRD、实现策略和具体项目名词不能进入 UI 或通用模板。
+请使用 ForgeX。从我的一句想法或现有项目开始，选择合适的执行路径，完成方向与研究、Product Model、用户动线、信息架构、视觉方向、真实代码实现、浏览器测试、定向修复和完整交付。保留所有 Artifact、版本、证据、人工决定、运行记录和 Issue；没有通过质量门不要宣称完成。
 ```
 
 复杂前端补充启动语：
@@ -146,3 +157,9 @@ bash skills/product-loop-development/scripts/check-product-loop.sh <project-path
 本插件是一个组合包，包含本地自定义 skill 和从公开 Codex skill 生态筛选的第三方 skill。第三方 skill 的原始许可证保留在对应 skill 目录中；没有明确许可证的内容仅按原来源说明保留，不在本仓库中重新授权。
 
 详见 `THIRD_PARTY_NOTICES.md`。
+
+## 方法参考与鸣谢
+
+本插件的“总导演 Skill + 专业 Skill + 阶段产物 + 强制质量门 + 真实运行验收”组织方式，参考了本地安装的 `gamexplugin@gamexplugin-marketplace` 在游戏策划、美术母版、素材、实现和 Playtest 之间的职责拆分思路。我们只借鉴可泛化的工作流方法，并将其重新设计为产品领域的 Artifact、Hard Gate、用户动线、关键页面状态组、工程契约和浏览器 QA；没有复制其游戏专用实现、素材服务或私有接口。
+
+产品方法同时吸收了现有 Product Loop 规则、Product Foundry PRD、自举开发手册及 `THIRD_PARTY_NOTICES.md` 中列出的公开设计与工程实践。具体项目使用时仍应遵守外部参考各自的许可证、商标和素材版权。

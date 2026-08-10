@@ -1,0 +1,4 @@
+interface:
+  display_name: "ForgeX"
+  short_description: "从想法或 MVP 设计、开发并验收完整产品"
+  default_prompt: "从我的想法或现有项目开始，按 ForgeX 流程完成研究、产品模型、动线、视觉、开发、测试修复和交付。"

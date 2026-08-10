@@ -1,0 +1,5 @@
+interface:
+  display_name: "Product Flow Design"
+  short_description: "设计用户动线、信息架构和页面状态"
+  default_prompt: "基于已确认 Product Model，设计主要用户路径、异常恢复、IA、页面地图、状态矩阵和 Wireflow。"
+
