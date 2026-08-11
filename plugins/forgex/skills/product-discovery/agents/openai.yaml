@@ -1,0 +1,5 @@
+interface:
+  display_name: "Product Discovery"
+  short_description: "澄清方向并用证据研究产品机会"
+  default_prompt: "分析这个想法或现有产品，先澄清方向，再给出候选参考和有来源的研究结论。"
+

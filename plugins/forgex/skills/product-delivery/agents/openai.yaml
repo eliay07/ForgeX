@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Delivery"
+  short_description: "组装可追溯 PRD、开发包和可运行交付"
+  default_prompt: "把已确认 Artifact 和通过 QA 的产品组装成可打开、可追溯的完整交付包。"

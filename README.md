@@ -1,148 +1,216 @@
-# Codex Product Studio
+# ForgeX
 
-Codex Product Studio 是一套面向 Codex 的产品开发插件。它把“从 idea 到上线”的工作约束成一套可复用流程：先做产品经理判断，再做信息架构、交互、视觉系统、前后端契约、测试验证和发布闭环。
+**从一句想法或现有 MVP，到可运行、可测试、可交付的完整产品。**
 
-它的目标不是让 Codex 写更多代码，而是让 Codex 在写代码前先回答正确的问题，避免生成看起来像 demo、PRD 或随机 dashboard 的产品界面。
+ForgeX（造物引擎）是一个面向 Codex 的产品生产 marketplace。它将产品发现、竞品研究、Product Model、用户动线、信息架构、视觉方向、工程实现、浏览器测试和交付组织成一条可追溯的流水线。
 
-## 解决的问题
+ForgeX 不追求“一次提示词生成大量页面”，而是让每个下游结果都来自已经审查的上游 Artifact，并在实现完成后通过真实用户路径测试和定向返工。
 
-- 功能入口没有按使用频率、用户价值、业务价值和风险排序。
-- 页面没有根据任务选择合适的产品表面，所有东西都被套成 landing page、dashboard 或卡片流。
-- 前端把 PRD、设计原则、实现策略和团队取舍直接写进用户界面。
-- 同一级按钮摆放没有依据，主动作、辅助动作和危险动作混在一起。
-- 2C 首屏不能让用户快速理解产品用途、看到最高频动作并立即开始。
-- 用户未明确要求 ToB 时，原型仍被默认做成后台、指标卡、表格和三栏管理面板。
-- 复杂任务把来源、候选、详情、参数和数据一次性摊开，缺少渐进披露和视觉引导。
-- AI 产品、生成工具和调研工具把问卷、参数和方法论直接铺在首屏，没有等用户先发送需求。
-- 工作台、编辑器、AI 工具和复杂产品把列表、详情、设置、日志、AI 工具和主任务全摊开，缺少交互深浅层级、可恢复折叠、右侧面板、抽屉、浮层、命令入口和深层详情。
-- 侧栏、草稿栏或工具栏收起后没有恢复入口，用户进入交互死路。
-- 色彩、排版、布局、图标和组件状态没有统一设计系统。
-- logo、背景、插画、封面、模板缩略图、空状态、截图和社交预览缺少统一素材库。
-- 需要品牌背景、插画、封面或社交图时，没有调用 GPT 图像生成能力产出 bitmap 资产，只用 HTML/SVG/CSS 临时画装饰线。
-- 新产品直接复用上一个项目的名称气质、色卡、圆角、组件尺寸、首页结构或文案节奏，没有自己的产品身份和前端样本选型。
-- UI 有入口但后端没有数据契约、权限、错误码、状态矩阵或验收方式。
-- 通用提示被具体项目名、真实业务对象、页面文案或品牌风格污染。
+> 当前版本：`v0.3`。已经具备完整工作流和专业 Skill，但仍处于真实项目验证阶段。详见[当前边界](#当前边界)。
 
 ## 核心能力
 
-- `product-loop-development`: 通用成熟产品标准、PM 优先级、产品表面选择、用户动线、交互层级、前端样本库、产品身份卡、按钮层级、2C 首屏、UI 文案隔离、设计 tokens、素材库、状态矩阵、前后端契约和 QA。
-- `create-plan`: 生成简洁执行计划。
-- `theme-factory`: 主题和视觉方向。
-- `webapp-testing`: 本地 Web 应用测试。
-- `mcp-builder`: MCP 服务构建参考。
-- `codebase-migrate`: 代码迁移和多文件重构。
-- `deploy-pipeline`: 部署流水线。
-- `sentry-triage`: Sentry 问题排查。
-- `changelog-generator`: 变更日志生成。
-- `support-ticket-triage`: 用户反馈分流。
-- `domain-name-brainstormer`: 域名创意和可用性检查。
+- 支持从一句话想法开始，也支持分析和重构已有产品、PRD 或代码仓库。
+- 可选头脑风暴，从多个维度生成、筛选、修改和补充产品建议。
+- 先发现候选竞品，再由用户确认正式研究范围，不默认深挖全部对象。
+- 生成可审查的 Product Model、功能树、版本边界、假设和风险。
+- 根据不同用户起点生成 Journey、Task Flow、User Flow 和 Service Blueprint。
+- 设计 IA、页面地图、状态矩阵、Wireflow 和渐进披露层级。
+- 先锁定 Product Identity 和关键页面状态组，再拆解 Token、组件和素材。
+- 使用 Codex 修改真实代码，并记录 Execution DAG、文件所有权和运行 Trace。
+- 根据典型用户编写测试用例，执行真实浏览器测试、截图检查、定向修复和回归。
+- 从已确认 Artifact 组装渐进式 PRD 与完整开发包，不在最后重新生成脱节长文。
 
-## Product Loop 标准
+## 三种工作模式
 
-使用 `product-loop-development` 时，Codex 必须先输出这些判断，再开始改前端：
+| 模式 | 适用情况 | 典型流程 |
+|---|---|---|
+| `Explore` | 只有想法，方向尚不成熟 | 澄清 -> 研究 -> 产品模型 -> 动线 -> 视觉 -> 开发 -> QA -> 交付 |
+| `Rebuild` | 已有 MVP、代码、PRD 或页面，需要重新分析 | 基线审计 -> 差距分类 -> 产品模型 -> 动线 -> 视觉 -> 改造 -> QA -> 交付 |
+| `Patch` | 目标明确且不改变主路径的局部修改 | 影响审计 -> 局部规格 -> 实现 -> 定向 QA -> 交付 |
+
+当修改影响目标用户、核心任务、导航、主要数据对象、权限或多个主要页面时，ForgeX 会把 `Patch` 自动升级为 `Rebuild`。
+
+## 工作流
 
 ```text
-1. 产品定位和目标用户
-2. ToC/ToB 取向判断，未明确 ToB 时默认按 ToC / prosumer 产品处理
-3. 最高频场景和用户成功瞬间
-4. 功能优先级表
-5. 通用产品表面选择
-6. 动线模型
-7. 可变页面层级图
-8. 引导式流程和渐进披露策略
-9. 交互层级图、默认打开/默认收起、浮层/抽屉/命令入口策略
-10. 页面/路由地图
-11. 按钮摆放依据
-12. 2C 首屏策略，若不适用需说明
-13. 设计 tokens 和视觉风格方向
-14. 素材库计划和 GPT 图像生成资产清单
-15. 产品身份卡和前端样本选型表
-16. 状态矩阵
-17. 前后端 API/data contract
-18. 验收清单
+输入想法或现有项目
+        ↓
+方向澄清与研究范围                     Hard Gate
+        ↓
+Product Model 与功能树                 Hard Gate
+        ↓
+用户动线、IA、页面和状态                Hard Gate
+        ↓
+原型、产品身份与关键页面状态组           Hard Gate
+        ↓
+技术契约、Execution DAG 与真实代码实现   Checkpoint
+        ↓
+浏览器测试、Issue、定向修复与回归         Hard Gate
+        ↓
+渐进式 PRD、可运行产品与开发包            Delivery
 ```
 
-核心质量门槛：
+### 一键完成的边界
 
-- 每个视图默认只有一个 primary action。
-- 除非用户明确要求 ToB、后台、企业管理或内部运营，默认原型应像 ToC / prosumer 创作者工具。
-- 高频、高价值、低风险动作优先出现在首屏或默认路径。
-- 低频、高风险动作必须降级到更多菜单、设置、确认弹窗或危险区域。
-- 复杂任务默认用引导式流程，不把来源、候选、详情、参数和数据同屏同权重堆叠。
-- AI 产品、生成类工具、调研工具和产品启动工具默认采用“输入 -> 发送 -> 预填确认 -> 工作台”，问卷和参数不能在用户发送前默认平铺在首屏。
-- 页面必须按复杂度写清层级：功能少就浅，功能多再加深；不要为了固定层数制造空页面或无意义步骤。
-- 复杂产品必须先定义 L0 固定壳层、L1 默认任务层、L2 可收起上下文、L3 临时浮层、L4 深层详情；默认层只服务主任务。
-- 工作台、编辑器和创作者工具必须定义默认态、对象选择态、编辑态、专注态、检查器、底部面板、浮动入口和可恢复折叠；任何收起区域都必须保留持续可见的恢复入口。
-- 页面标题、tab、按钮和空状态使用用户语言，不使用 PRD 语言。
-- UI 可见动作必须对应接口、本地状态、权限、错误码和恢复路径。
-- 设计系统必须包含颜色 token、字体层级、布局网格、组件状态和图标语义。
-- 新产品必须先建立自己的产品身份卡，包括产品名、logo 方向、色彩方向、组件气质和与上一个项目的差异；前端实现前至少选择 2 个合适样本，并说明借鉴什么、不借鉴什么。
-- 官网、2C 产品、创作者工具和品牌化工具必须规划统一素材库；背景图、插画、封面、模板缩略图和社交预览优先用 GPT 图像生成 bitmap 资产。
-- 个人创作者、自媒体、短视频、图文、播客或作品生产工具默认按“目标与灵感库 -> 沉浸式工作台 -> 发布与复盘”闭环设计。首页先展示可编辑目标、进度、灵感库和继续创作入口；单条内容进入沉浸式编辑；发布后必须有确认同步、链接追踪和复盘回流。
-- ToC 创作者工具建议把轻量 IP/mascot 作为可选标配资产，并为入口、灵感库、编辑、发布复盘等阶段准备多张可复用 bitmap 视觉资产，而不是只用一张背景图撑完整产品。
-- 模板和示例只允许使用占位符，不固化具体项目名词。
+ForgeX 会自动执行低风险、可恢复的工作，并在输入冻结后并行处理竞品、Persona 路径、页面状态或测试套件。但以下决定仍需要人工确认：
 
-## 模板
+- 产品方向和目标用户。
+- 正式竞品研究范围。
+- Product Model、版本边界和核心动线。
+- 视觉方向与关键页面状态组。
+- 删除、覆盖、付费、部署和外部发布。
+- 无法自动解决的产品冲突与高风险 Issue。
 
-`product-loop-development/templates/` 提供可复制的结构化模板：
+因此，“一键完成”表示 **每个关键决策之间自动推进到真实结果**，不是绕过用户判断。
 
-- `design-tokens-template.md`
-- `app-shell-template.md`
-- `interaction-map-template.md`
-- `state-matrix-template.md`
-- `asset-library-template.md`
-- `frontend-reference-selection-template.md`
+## 安装
 
-这些模板用于把产品判断落成可检查的工程输入，而不是作为固定 UI 套壳。
-
-## 本地安装
-
-本工作区通过 personal marketplace 注册：
+### 从 GitHub 安装
 
 ```bash
-codex plugin add codex-product-dev-kit@personal
+codex plugin marketplace add https://github.com/eliay07/ForgeX.git
+codex plugin add forgex@forgex
 ```
 
-插件源目录：
+安装完成后开启一个新 Codex 线程，让新的 Skill 被加载。
 
-```text
-/Users/eliayan/Desktop/codex/插件/codex-product-dev-kit
-```
-
-GitHub 仓库：
-
-```text
-https://github.com/eliay07/Codex-Product-Studio
-```
-
-## 使用方式
-
-常用启动语：
-
-```text
-请使用 Codex Product Studio。先按 PM 思维梳理产品定位、ToC/ToB 取向、功能优先级、产品表面、动线模型、可变页面层级、交互层级图、默认打开/默认收起规则、浮层/抽屉/命令入口策略、按钮摆放、2C 首屏、引导式流程、产品身份卡、前端样本选型表、设计 tokens、素材库、GPT 图像生成资产、状态矩阵和前后端契约，再开始写代码。除非明确要求 ToB，否则默认按 ToC / prosumer 创作者工具设计。内部 PRD、实现策略和具体项目名词不能进入 UI 或通用模板。
-```
-
-复杂前端补充启动语：
-
-```text
-先产出交互层级图。不要把所有功能平铺在一个页面。默认层只放当前主任务和一个主动作；AI 产品、生成类工具、调研工具和产品启动工具的问卷、参数、确认项必须在用户发送/开始后再出现，不要默认铺在首屏；来源、历史、参数、预览、风险、设置和低频动作必须按重要性进入可收起侧栏、右侧面板、Sheet/Drawer、Popover/Dropdown、Command Menu、详情页或 Modal。移动端必须说明侧栏和浮层如何转换。
-```
-
-新产品前端补充启动语：
-
-```text
-不要复用上一个项目的视觉壳。先为当前产品生成独立名称、logo 方向、色卡、组件气质和不照抄清单；再从前端样本库里选 2 到 3 个适合当前产品的样本，说明借鉴结构、组件、信息密度和状态处理的原因，然后再写 UI。
-```
-
-交付前运行：
+### 本地开发安装
 
 ```bash
-bash skills/product-loop-development/scripts/check-product-loop.sh <project-path>
+git clone https://github.com/eliay07/ForgeX.git
+codex plugin marketplace add /absolute/path/to/ForgeX
+codex plugin add forgex@forgex
 ```
 
-## 许可证与来源
+更新 marketplace 后可运行：
 
-本插件是一个组合包，包含本地自定义 skill 和从公开 Codex skill 生态筛选的第三方 skill。第三方 skill 的原始许可证保留在对应 skill 目录中；没有明确许可证的内容仅按原来源说明保留，不在本仓库中重新授权。
+```bash
+codex plugin marketplace upgrade forgex
+codex plugin add forgex@forgex
+```
 
-详见 `THIRD_PARTY_NOTICES.md`。
+## 快速开始
+
+### 从一句想法开始
+
+```text
+使用 ForgeX。我有一句产品想法：<你的想法>。
+先判断是否需要头脑风暴，再完成研究、产品模型、动线、视觉、开发、测试修复和交付。
+```
+
+### 改造已有产品
+
+```text
+使用 ForgeX 审计当前项目。保留正确实现，读取现有 PRD、代码和页面，
+从最合理的未完成节点继续改造成完整产品，不要推倒重来。
+```
+
+### 只做局部修改
+
+```text
+使用 ForgeX 的 Patch 模式完成这个修改。先说明影响范围，
+实现后运行定向测试和受影响主路径回归。
+```
+
+### 验收已有产品
+
+```text
+使用 ForgeX 根据典型用户和主路径编写测试用例，
+在真实浏览器中测试、保存截图证据、修复问题并完成回归。
+```
+
+## 专业 Skill
+
+| Skill | 职责 | 主要产物 |
+|---|---|---|
+| `forgex` | 总入口、路径判断、调度和恢复 | Project Index、阶段状态、交接记录 |
+| `product-discovery` | 方向、头脑风暴、项目审计和研究 | Direction Brief、Evidence、Opportunity Map |
+| `product-modeling` | 用户、价值、原则、功能和范围 | Product Model、Feature Tree、Risk Register |
+| `product-flow-design` | 动线、IA、页面、状态和低保真 | Journey、User Flow、State Matrix、Wireflow |
+| `product-visual-direction` | 产品身份、视觉方向和页面状态组 | Visual DNA、Screen State Set、Tokens、Asset Plan |
+| `product-engineering` | 技术契约、工作包和真实实现 | Technical Contract、Execution DAG、ChangeSet |
+| `product-qa` | 用例、浏览器验证、Issue 和返工 | Test Report、Evidence、Issue、Rework Trace |
+| `product-delivery` | PRD、预览、源码和开发包 | Progressive PRD、Delivery Manifest、Runbook |
+| `product-loop-development` | 跨阶段产品与工程质量标准 | IA、交互、前后端契约和成熟度约束 |
+
+ForgeX 还包含计划、主题、Web 测试、迁移、部署、Sentry、变更日志和反馈分流等辅助 Skill，由总入口按需使用。
+
+## Artifact 与审查
+
+ForgeX 将专业产物保存为可编辑、可版本化的 Artifact。每个 Artifact 记录：
+
+- 状态：`hypothesis`、`ai_suggested`、`human_confirmed`、`validated` 或 `deprecated`。
+- 来源、依赖、版本和前后差异。
+- AI Agent、模型与运行 Trace。
+- 人工接受、修改、拒绝和批注。
+- Issue、责任阶段和下游影响。
+
+审查分为三类：
+
+- `Hard Gate`：高返工半径的人类决定，未批准不能启动下游。
+- `Checkpoint`：低风险、可逆的阶段确认。
+- `Observable Step`：只展示自动执行进度，不要求用户逐条点击。
+
+## 交付内容
+
+完整流程可交付：
+
+- Product Brief、研究证据和机会地图。
+- Product Model、Feature Tree 和版本边界。
+- Journey、Task Flow、User Flow 和 Service Blueprint。
+- 页面地图、状态矩阵、Wireflow 和原型。
+- 视觉方向、关键页面状态组、Token、组件和素材计划。
+- PRD v1.0、API/Data Contract 和 Acceptance Criteria。
+- 可运行源码、构建产物或预览入口。
+- 测试用例、截图证据、Issue 和回归结果。
+- 决策记录、版本索引、风险和 Runbook。
+
+## 仓库结构
+
+```text
+ForgeX/
+├── .agents/plugins/marketplace.json   # Codex marketplace 注册
+├── plugins/forgex/
+│   ├── .codex-plugin/plugin.json      # 插件元数据
+│   ├── skills/                        # 总入口、专业与辅助 Skill
+│   ├── references/                    # Gate、Artifact、视觉和 QA 协议
+│   ├── assets/templates/              # 项目与 Artifact 模板
+│   └── THIRD_PARTY_NOTICES.md
+└── README.md
+```
+
+## 验证
+
+插件开发完成后应运行：
+
+```bash
+python3 /path/to/plugin-creator/scripts/validate_plugin.py plugins/forgex
+bash plugins/forgex/skills/product-loop-development/scripts/check-product-loop.sh <project-path>
+```
+
+ForgeX 的“完成”要求至少包括：真实主路径可运行、一个异常路径可恢复、关键视口无阻断问题、Blocker/High Issue 已关闭或接受风险、交付文件真实可打开。
+
+## 当前边界
+
+ForgeX `v0.3` 是一套已经可安装的工作流插件，但不是独立 SaaS 或后台服务：
+
+- Artifact、Gate 和 Trace 目前由 Skill 协议约束，尚无独立状态机服务。
+- 没有专用素材 MCP；视觉生成使用当前 Codex 环境中可用的 GPT 图像或设计工具。
+- 研究、代码执行和浏览器测试取决于当前 Codex 会话拥有的工具与权限。
+- 尚未建立覆盖多种产品类型的公开评测集和稳定性基准。
+- 不承诺在没有人工产品决策的情况下全自动发布生产系统。
+
+下一阶段重点是 Artifact Schema 校验器、项目脚手架、标准化评测样例和真实项目前向测试。
+
+## 方法参考与鸣谢
+
+ForgeX 的“总导演 Skill + 专业 Skill + 阶段 Artifact + 强制质量门 + 真实运行验收”结构，参考了 GameX Plugin 在游戏策划、美术母版、素材、实现和 Playtest 之间的职责拆分方式。
+
+ForgeX 只借鉴可泛化的方法，并将其重新设计为产品发现、Product Model、用户动线、关键页面状态组、工程契约和浏览器 QA。没有复制 GameX 的游戏专用代码、素材、MCP 服务、私有接口或运行时实现。
+
+其他方法与第三方 Skill 来源见 [THIRD_PARTY_NOTICES.md](plugins/forgex/THIRD_PARTY_NOTICES.md)。
+
+## License
+
+本仓库为混合来源插件集合。第三方 Skill 沿用各自许可证；没有单独许可证的内容不在本仓库中重新授权。发布、分发或商用前请检查 [THIRD_PARTY_NOTICES.md](plugins/forgex/THIRD_PARTY_NOTICES.md) 及对应目录中的许可证文件。

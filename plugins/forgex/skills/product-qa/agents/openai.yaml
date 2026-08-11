@@ -1,0 +1,5 @@
+interface:
+  display_name: "Product QA"
+  short_description: "用真实用户路径测试、修复并回归产品"
+  default_prompt: "基于 Persona 和 User Flow 编写测试用例，在真实浏览器中测试产品、记录证据、定向修复并回归。"
+

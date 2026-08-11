@@ -1,0 +1,5 @@
+interface:
+  display_name: "Product Modeling"
+  short_description: "建立用户、价值、功能树和版本边界"
+  default_prompt: "基于已确认方向和证据，生成可审查的 Product Model、功能树、优先级、假设与风险。"
+

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Product Engineering"
+  short_description: "把已确认方案实现为真实可运行产品"
+  default_prompt: "依据已确认 Artifact 和技术契约，用 Codex 实现真实纵向闭环，持续记录进度并交给 QA。"
+
