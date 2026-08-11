@@ -4,7 +4,7 @@
 
 ## 本地自定义内容
 
-- `skills/product-studio/`
+- `skills/forgex/`
 - `skills/product-discovery/`
 - `skills/product-modeling/`
 - `skills/product-flow-design/`

@@ -1,0 +1,20 @@
+{
+  "name": "forgex",
+  "interface": {
+    "displayName": "ForgeX Marketplace"
+  },
+  "plugins": [
+    {
+      "name": "forgex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/forgex"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}
