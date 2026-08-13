@@ -5,7 +5,7 @@ description: Validate a runnable digital product through representative user flo
 
 # Product QA
 
-像真实用户一样测试产品，而不是只检查构建是否成功。先读 `../../references/qa-and-user-flow.md` 和 `../../references/product-quality-bar.md`。
+像真实用户一样测试产品，而不是只检查构建是否成功。先读 `../../references/qa-and-user-flow.md`、`../../references/product-quality-bar.md` 和 `../../references/user-product-preferences.md`。
 
 ## 流程
 
@@ -16,6 +16,8 @@ description: Validate a runnable digital product through representative user flo
 5. 检查网络、控制台、数据结果、可观测日志、长任务心跳与重试。
 6. 在移动端、平板和桌面验证焦点、文字完整、溢出、遮挡、触控尺寸、键盘、对比度和 Reduced Motion。
 7. 将运行截图与批准的关键状态组母版并排检查结构、层级、色彩、字体、图标、素材和动效一致性。
+8. 执行偏好回归：30 秒扫读、长列表折叠、滚动稳定、取消完成、归档恢复、自然语言 AI 预览、重复/空白数据过滤、Copilot 唤起与遮挡。
+9. 不只验证目标控件；用户指出一个问题时，检查同类组件和造成问题的共享状态逻辑。
 
 ## Issue 与返工
 
@@ -26,4 +28,3 @@ description: Validate a runnable digital product through representative user flo
 ## 通过条件
 
 Blocker 和 High Issue 已关闭或被用户明确接受；主路径和至少一个异常恢复有证据；构建、类型检查、测试和浏览器验证通过。输出 TestReport、Evidence、Issue、ReworkTrace 与残余风险。
-

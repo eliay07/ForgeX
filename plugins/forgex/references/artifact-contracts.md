@@ -42,7 +42,27 @@ retry_of: null
 
 每项 AI 建议至少包含：建议、理由、证据或依据、置信度、替代方案、下游影响。人工动作记录接受、修改、拒绝、暂缓或退回，不得只保存最终文本。
 
-## 4. Issue
+## 4. 用户偏好
+
+```yaml
+id: preference-id
+statement: ""
+scope: global | product-family | local
+category: information | interaction | visual | ai-behavior | accessibility
+status: observed | confirmed | superseded
+confidence: low | medium | high
+evidence:
+  - date: ISO-8601
+    source: user-feedback
+    quote_or_summary: ""
+applies_to: []
+exceptions: []
+supersedes: []
+```
+
+偏好必须来自明确反馈或重复证据。一次性要求默认保留在当前项目；长期档案只保存稳定规律。最新明确要求可以覆盖旧偏好，但必须保留 supersedes 关系，不静默删除历史。
+
+## 5. Issue
 
 ```yaml
 artifact: artifact-id
@@ -58,7 +78,7 @@ status: open | fixing | verifying | resolved | accepted_risk
 
 Issue 必须退回责任 Artifact；修复后创建新版本并执行受影响范围的回归测试。
 
-## 5. 文件落地
+## 6. 文件落地
 
 推荐项目目录：
 
@@ -76,4 +96,3 @@ product/
 ```
 
 `product/project.md` 是索引与当前状态，不是把所有长文复制一遍。每个目录中的文件名包含稳定 ID 和版本号。
-

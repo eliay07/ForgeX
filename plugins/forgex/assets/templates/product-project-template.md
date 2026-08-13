@@ -24,6 +24,14 @@
 | Decision | Options | Chosen | Reason | Impact |
 |---|---|---|---|---|
 
+## Preference Evidence
+
+| Date | Feedback | Scope | Evidence | Design implication | Status |
+|---|---|---|---|---|---|
+
+- Scope: global | product-family | local
+- Status: observed | confirmed | superseded
+
 ## Open Issues
 
 | Issue | Severity | Owner | Status | Evidence |
@@ -41,6 +49,14 @@
 - Imagery:
 - Forbidden patterns:
 
+## Information Hierarchy
+
+- 30-second summary:
+- Primary action:
+- Progressive disclosure:
+- History/evidence location:
+- AI suggestion and confirmation model:
+
 ## Delivery
 
 - Preview:
@@ -48,4 +64,3 @@
 - Development package:
 - Test report:
 - Runbook:
-

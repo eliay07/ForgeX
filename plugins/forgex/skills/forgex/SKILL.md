@@ -10,13 +10,14 @@ description: Orchestrate an end-to-end product workflow from an idea or existing
 ## 启动
 
 1. 阅读工作区最近的 `AGENTS.md`、README、需求、设计、代码和未提交改动。
-2. 读取 `../../references/workflow-and-gates.md`、`../../references/artifact-contracts.md` 和 `../../references/product-quality-bar.md`。
+2. 读取 `../../references/workflow-and-gates.md`、`../../references/artifact-contracts.md`、`../../references/product-quality-bar.md` 和 `../../references/user-product-preferences.md`。
 3. 选择执行路径：
    - `Explore`：只有想法，或方向不成熟。
    - `Rebuild`：已有 PRD、产品、网址、代码或 MVP，需要重新分析。
    - `Patch`：目标明确且不改变主路径的局部修改。
 4. 在项目中创建或更新 `product/project.md`。可复制 `../../assets/templates/product-project-template.md`，但不得覆盖用户已有事实源。
 5. 告知用户当前阶段、正在处理的对象、已完成对象和下一步。长任务持续写真实事件和心跳，不伪造精确百分比。
+6. 将本轮明确反馈写入项目的 `Preference Evidence`；只有符合偏好学习协议的反馈才合并回长期档案，不把一次性页面要求泛化为全局规则。
 
 ## 核心门控
 
